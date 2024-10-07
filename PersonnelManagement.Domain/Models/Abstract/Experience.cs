@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using PersonnelManagement.Data.Model.Concrete;
 
-namespace PersonnelManagement.Data.Model.Abstract;
+using PersonnelManagement.Domain.Models.Concrete;
+
+namespace PersonnelManagement.Domain.Models.Abstract;
 
 public class Experience
 {

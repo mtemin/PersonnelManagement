@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using PersonnelManagement.Data.Model.Concrete;
+using PersonnelManagement.Domain.Models.Concrete;
 
-namespace PersonnelManagement.Data.Model.Abstract;
+namespace PersonnelManagement.Domain.Models.Abstract;
 
 public class Request
 {

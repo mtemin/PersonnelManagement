@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using PersonnelManagement.Data.Model.Abstract;
+using PersonnelManagement.Domain.Models.Abstract;
 
-namespace PersonnelManagement.Data.Model.Concrete;
+
+namespace PersonnelManagement.Domain.Models.Concrete;
 
 public class Company
 {

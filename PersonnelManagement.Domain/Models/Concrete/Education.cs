@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using PersonnelManagement.Domain.Models.Abstract;
 
-namespace PersonnelManagement.Data.Model.Abstract;
+namespace PersonnelManagement.Domain.Models.Concrete;
 
 public class Education:Experience
 {

@@ -1,6 +1,6 @@
-﻿using PersonnelManagement.Data.Model.Concrete;
+﻿using PersonnelManagement.Domain.Models.Concrete;
 
-namespace PersonnelManagement.Domain.Repository;
+namespace PersonnelManagement.Domain.Repositories;
 
 public interface ICompanyRepository : IRepository<Company>
 {

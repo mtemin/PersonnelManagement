@@ -1,4 +1,4 @@
-﻿using PersonnelManagement.Data.Model.Concrete;
+﻿using PersonnelManagement.Domain.Models.Concrete;
 
 namespace PersonnelManagement.Domain.Services;
 

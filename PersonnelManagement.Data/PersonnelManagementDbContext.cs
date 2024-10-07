@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PersonnelManagement.Data.Configurations;
-using PersonnelManagement.Data.Model;
-using PersonnelManagement.Data.Model.Abstract;
-using PersonnelManagement.Data.Model.Concrete;
+using PersonnelManagement.Domain.Models;
+using PersonnelManagement.Domain.Models.Abstract;
+using PersonnelManagement.Domain.Models.Concrete;
 
 namespace PersonnelManagement.Data;
 

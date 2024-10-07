@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PersonnelManagement.Data.Model.Concrete;
+using PersonnelManagement.Domain.Models.Concrete;
 
 namespace PersonnelManagement.Data.Configurations;
 
