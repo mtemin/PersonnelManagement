@@ -8,8 +8,9 @@ public  interface IRepository<T> where T : class
     ValueTask<T> GetByIdAsync(int id);
     Task AddAsync(T entity);
     void Remove(T entity);
-    Task AddRangeAsync(IEnumerable<T> entities);
+    void Update(T entity);
     void RemoveRange(IEnumerable<T> entities);
+    Task AddRangeAsync(IEnumerable<T> entities);
     IEnumerable<T> Find(Expression<Func<T, bool>> filter);
     Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> filter);
 }

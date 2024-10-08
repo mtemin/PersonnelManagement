@@ -35,12 +35,26 @@ public class Repository<T> : IRepository<T> where T : class
 
     public ValueTask<T> GetByIdAsync(int id)
     {
-        return  context.Set<T>().FindAsync(id);
+        return context.Set<T>().FindAsync(id);
     }
 
     public void Remove(T entity)
     {
         context.Set<T>().Remove(entity);
+    }
+
+    public void Update(T entity)
+    {
+        context.Set<T>().Update(entity);
+    }
+
+    public void Remove(int id)
+    {
+        var entity = context.Set<T>().Find(id);
+        if (entity != null)
+        {
+            context.Set<T>().Remove(entity);
+        }
     }
 
     public void RemoveRange(IEnumerable<T> entities)
