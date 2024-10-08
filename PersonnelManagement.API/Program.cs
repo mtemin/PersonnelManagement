@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using PersonnelManagement.Data;
+using PersonnelManagement.Domain;
+using PersonnelManagement.Domain.Services;
+using PersonnelManagement.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +14,8 @@ builder.Services.AddDbContext<PersonnelManagementDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("PERSONNEL_MANAGEMENT"));
 });
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddTransient<ICompanyService,CompanyService>();
 
 var app = builder.Build();
 
