@@ -5,6 +5,7 @@ namespace PersonnelManagement.Domain.Models.Concrete;
 
 public class LeaveRequest:Request
 {
+    public string Type { get; set; }
     [Required]
     public DateOnly LeaveStartDay { get; set; }
     [Required]
