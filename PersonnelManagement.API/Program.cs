@@ -10,12 +10,17 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// builder.Services.AddDbContext<PersonnelManagementDbContext>(options =>
+// {
+//     options.UseSqlServer(builder.Configuration.GetConnectionString("PERSONNEL_MANAGEMENT"));
+// });
+
 builder.Services.AddDbContext<PersonnelManagementDbContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("PERSONNEL_MANAGEMENT"));
-});
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddTransient<ICompanyService,CompanyService>();
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PERSONNEL_MANAGEMENT")));
+
+
+// builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+// builder.Services.AddTransient<ICompanyService,CompanyService>();
 
 var app = builder.Build();
 

@@ -133,6 +133,7 @@ namespace PersonnelManagement.Data.Migrations
                     CompanyId = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsApproved = table.Column<bool>(type: "bit", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LeaveStartDay = table.Column<DateOnly>(type: "date", nullable: false),
                     LeaveEndDay = table.Column<DateOnly>(type: "date", nullable: false)
                 },

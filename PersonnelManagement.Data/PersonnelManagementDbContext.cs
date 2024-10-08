@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PersonnelManagement.Data.Configurations;
-using PersonnelManagement.Domain.Models;
 using PersonnelManagement.Domain.Models.Abstract;
 using PersonnelManagement.Domain.Models.Concrete;
 
@@ -24,7 +23,7 @@ public class PersonnelManagementDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        //base.OnModelCreating(modelBuilder);
+        base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfiguration(new CompanyConfiguration());
         modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
 

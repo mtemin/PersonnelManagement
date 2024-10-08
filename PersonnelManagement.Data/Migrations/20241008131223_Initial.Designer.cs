@@ -12,7 +12,7 @@ using PersonnelManagement.Data;
 namespace PersonnelManagement.Data.Migrations
 {
     [DbContext(typeof(PersonnelManagementDbContext))]
-    [Migration("20241004111709_Initial")]
+    [Migration("20241008131223_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -25,45 +25,7 @@ namespace PersonnelManagement.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("PersonnelManagement.Data.Model.Abstract.Education", b =>
-                {
-                    b.Property<int>("EducationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EducationId"));
-
-                    b.Property<string>("Degree")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<DateOnly>("EndDate")
-                        .HasColumnType("date");
-
-                    b.Property<int>("ExperienceId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FieldOfStudy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateOnly>("StartDate")
-                        .HasColumnType("date");
-
-                    b.HasKey("EducationId");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.ToTable("Educations");
-                });
-
-            modelBuilder.Entity("PersonnelManagement.Data.Model.Abstract.Expense", b =>
+            modelBuilder.Entity("PersonnelManagement.Domain.Models.Abstract.Expense", b =>
                 {
                     b.Property<int>("RequestId")
                         .ValueGeneratedOnAdd()
@@ -99,7 +61,7 @@ namespace PersonnelManagement.Data.Migrations
                     b.ToTable("Expenses");
                 });
 
-            modelBuilder.Entity("PersonnelManagement.Data.Model.Abstract.LeaveDay", b =>
+            modelBuilder.Entity("PersonnelManagement.Domain.Models.Abstract.LeaveDay", b =>
                 {
                     b.Property<int>("RequestId")
                         .ValueGeneratedOnAdd()
@@ -129,6 +91,10 @@ namespace PersonnelManagement.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("RequestId");
 
                     b.HasIndex("CompanyId");
@@ -138,7 +104,7 @@ namespace PersonnelManagement.Data.Migrations
                     b.ToTable("LeaveDays");
                 });
 
-            modelBuilder.Entity("PersonnelManagement.Data.Model.Certificate", b =>
+            modelBuilder.Entity("PersonnelManagement.Domain.Models.Concrete.Certificate", b =>
                 {
                     b.Property<int>("CertificateId")
                         .ValueGeneratedOnAdd()
@@ -181,7 +147,7 @@ namespace PersonnelManagement.Data.Migrations
                     b.ToTable("Certificates");
                 });
 
-            modelBuilder.Entity("PersonnelManagement.Data.Model.Concrete.Company", b =>
+            modelBuilder.Entity("PersonnelManagement.Domain.Models.Concrete.Company", b =>
                 {
                     b.Property<int>("CompanyId")
                         .ValueGeneratedOnAdd()
@@ -199,7 +165,45 @@ namespace PersonnelManagement.Data.Migrations
                     b.ToTable("Companies", (string)null);
                 });
 
-            modelBuilder.Entity("PersonnelManagement.Data.Model.Concrete.Employee", b =>
+            modelBuilder.Entity("PersonnelManagement.Domain.Models.Concrete.Education", b =>
+                {
+                    b.Property<int>("EducationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EducationId"));
+
+                    b.Property<string>("Degree")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly>("EndDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("ExperienceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FieldOfStudy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly>("StartDate")
+                        .HasColumnType("date");
+
+                    b.HasKey("EducationId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("Educations");
+                });
+
+            modelBuilder.Entity("PersonnelManagement.Domain.Models.Concrete.Employee", b =>
                 {
                     b.Property<int>("EmployeeId")
                         .ValueGeneratedOnAdd()
@@ -232,7 +236,7 @@ namespace PersonnelManagement.Data.Migrations
                     b.ToTable("Employees", (string)null);
                 });
 
-            modelBuilder.Entity("PersonnelManagement.Data.Model.Concrete.ProfessionalExperience", b =>
+            modelBuilder.Entity("PersonnelManagement.Domain.Models.Concrete.ProfessionalExperience", b =>
                 {
                     b.Property<int>("ProfessionalExperienceId")
                         .ValueGeneratedOnAdd()
@@ -271,26 +275,15 @@ namespace PersonnelManagement.Data.Migrations
                     b.ToTable("ProfessionalExperiences");
                 });
 
-            modelBuilder.Entity("PersonnelManagement.Data.Model.Abstract.Education", b =>
+            modelBuilder.Entity("PersonnelManagement.Domain.Models.Abstract.Expense", b =>
                 {
-                    b.HasOne("PersonnelManagement.Data.Model.Concrete.Employee", "Employee")
-                        .WithMany("Educations")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Employee");
-                });
-
-            modelBuilder.Entity("PersonnelManagement.Data.Model.Abstract.Expense", b =>
-                {
-                    b.HasOne("PersonnelManagement.Data.Model.Concrete.Company", "Company")
+                    b.HasOne("PersonnelManagement.Domain.Models.Concrete.Company", "Company")
                         .WithMany("Expenses")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("PersonnelManagement.Data.Model.Concrete.Employee", "Employee")
+                    b.HasOne("PersonnelManagement.Domain.Models.Concrete.Employee", "Employee")
                         .WithMany("Expenses")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -301,15 +294,15 @@ namespace PersonnelManagement.Data.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("PersonnelManagement.Data.Model.Abstract.LeaveDay", b =>
+            modelBuilder.Entity("PersonnelManagement.Domain.Models.Abstract.LeaveDay", b =>
                 {
-                    b.HasOne("PersonnelManagement.Data.Model.Concrete.Company", "Company")
+                    b.HasOne("PersonnelManagement.Domain.Models.Concrete.Company", "Company")
                         .WithMany("PersonnelLeaveDays")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("PersonnelManagement.Data.Model.Concrete.Employee", "Employee")
+                    b.HasOne("PersonnelManagement.Domain.Models.Concrete.Employee", "Employee")
                         .WithMany("LeaveDays")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -320,9 +313,9 @@ namespace PersonnelManagement.Data.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("PersonnelManagement.Data.Model.Certificate", b =>
+            modelBuilder.Entity("PersonnelManagement.Domain.Models.Concrete.Certificate", b =>
                 {
-                    b.HasOne("PersonnelManagement.Data.Model.Concrete.Employee", "Employee")
+                    b.HasOne("PersonnelManagement.Domain.Models.Concrete.Employee", "Employee")
                         .WithMany("Certificates")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -331,9 +324,20 @@ namespace PersonnelManagement.Data.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("PersonnelManagement.Data.Model.Concrete.Employee", b =>
+            modelBuilder.Entity("PersonnelManagement.Domain.Models.Concrete.Education", b =>
                 {
-                    b.HasOne("PersonnelManagement.Data.Model.Concrete.Company", "Company")
+                    b.HasOne("PersonnelManagement.Domain.Models.Concrete.Employee", "Employee")
+                        .WithMany("Educations")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("PersonnelManagement.Domain.Models.Concrete.Employee", b =>
+                {
+                    b.HasOne("PersonnelManagement.Domain.Models.Concrete.Company", "Company")
                         .WithMany("Employees")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -342,9 +346,9 @@ namespace PersonnelManagement.Data.Migrations
                     b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("PersonnelManagement.Data.Model.Concrete.ProfessionalExperience", b =>
+            modelBuilder.Entity("PersonnelManagement.Domain.Models.Concrete.ProfessionalExperience", b =>
                 {
-                    b.HasOne("PersonnelManagement.Data.Model.Concrete.Employee", "Employee")
+                    b.HasOne("PersonnelManagement.Domain.Models.Concrete.Employee", "Employee")
                         .WithMany("ProfessionalExperiences")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -353,7 +357,7 @@ namespace PersonnelManagement.Data.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("PersonnelManagement.Data.Model.Concrete.Company", b =>
+            modelBuilder.Entity("PersonnelManagement.Domain.Models.Concrete.Company", b =>
                 {
                     b.Navigation("Employees");
 
@@ -362,7 +366,7 @@ namespace PersonnelManagement.Data.Migrations
                     b.Navigation("PersonnelLeaveDays");
                 });
 
-            modelBuilder.Entity("PersonnelManagement.Data.Model.Concrete.Employee", b =>
+            modelBuilder.Entity("PersonnelManagement.Domain.Models.Concrete.Employee", b =>
                 {
                     b.Navigation("Certificates");
 
