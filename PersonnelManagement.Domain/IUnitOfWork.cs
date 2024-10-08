@@ -8,11 +8,12 @@ namespace PersonnelManagement.Domain;
 
 public interface IUnitOfWork : IDisposable
 {
-    IEmployeeRepository Employees { get; }
-    ICompanyRepository Companies { get; }
-    IRepository<Certificate> Certificates { get; }
-    IRepository<LeaveDay> LeaveDays { get; }
-    IRepository<ProfessionalExperience> ProfessionalExperiences { get; }
-    IRepository<Expense> Expenses { get; }
     Task<int> CommitAsync();
+    ICompanyRepository Companies { get; }
+    IEmployeeRepository Employees { get; }
+    IRepository<Expense> Expenses { get; } //employee, company
+    IRepository<LeaveDay> LeaveDays { get; } //employee, company
+    IRepository<Education> Educations { get; } //employee
+    IRepository<Certificate> Certificates { get; } //employee
+    IRepository<ProfessionalExperience> ProfessionalExperiences { get; } //employee
 }
