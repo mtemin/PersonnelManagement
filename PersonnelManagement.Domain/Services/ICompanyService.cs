@@ -7,6 +7,6 @@ public interface ICompanyService:IService<Company>
     // Task<IEnumerable<Company>> GetAllCompanies();
     // Task<Company> GetCompanyById(int id);
     // Task<Company> CreateCompany(Company newCompany);
-    // Task UpdateCompany(Company companyToBeUpdated, Company company);
+    Task<Company> UpdateEntityAsync(Company companyToBeUpdated, Company company);
     // Task DeleteCompany(Company company); 
 }

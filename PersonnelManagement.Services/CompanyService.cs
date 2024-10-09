@@ -11,4 +11,10 @@ public class CompanyService : BaseService<Company>,ICompanyService
         : base(unitOfWork, repository)
     {
     }
+
+    public async Task<Company> UpdateEntityAsync(Company entityToBeUpdated, Company entity)
+    {
+        throw new NotImplementedException();
+    }
+
 }
