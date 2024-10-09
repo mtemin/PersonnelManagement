@@ -1,9 +1,12 @@
-﻿using PersonnelManagement.Domain;
+﻿using System.ComponentModel.DataAnnotations;
+using PersonnelManagement.Domain;
 using PersonnelManagement.Domain.Repositories;
+using PersonnelManagement.Domain.Services;
 
 namespace PersonnelManagement.Services;
 
-public abstract class BaseService<T> where T : class
+public abstract class BaseService<T> : IService<T> where T : class 
+
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IRepository<T> _repository;
@@ -34,12 +37,6 @@ public abstract class BaseService<T> where T : class
     public async Task DeleteEntityAsync(T entity)
     {
         _repository.Remove(entity);
-        await _unitOfWork.CommitAsync();
-    }
-
-    public async Task UpdateEntityAsync(T entity)
-    {
-        _repository.Update(entity);
         await _unitOfWork.CommitAsync();
     }
 }
