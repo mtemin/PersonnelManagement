@@ -1,26 +1,29 @@
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using PersonnelManagement.Data;
 using PersonnelManagement.Domain;
-using PersonnelManagement.Domain.Services;
 using PersonnelManagement.Services;
+using PersonnelManagement.Domain.Services;
+using PersonnelManagement.Data.Repositories;
+using PersonnelManagement.Domain.Repositories;
+using PersonnelManagement.Domain.Models.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-// builder.Services.AddDbContext<PersonnelManagementDbContext>(options =>
-// {
-//     options.UseSqlServer(builder.Configuration.GetConnectionString("PERSONNEL_MANAGEMENT"));
-// });
 
 builder.Services.AddDbContext<PersonnelManagementDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PERSONNEL_MANAGEMENT")));
 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddTransient<IRepository<Employee>, EmployeeRepository>();    
+builder.Services.AddTransient<IEmployeeService, EmployeeService>();
 
-// builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-// builder.Services.AddTransient<ICompanyService,CompanyService>();
+// builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
 
 var app = builder.Build();
 
@@ -32,5 +35,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.MapControllers();
 
 app.Run();
