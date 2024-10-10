@@ -17,27 +17,32 @@ namespace PersonnelManagement.Data.Configurations
             builder.HasMany(x => x.ProfessionalExperiences) //iş tecrübesi
                 .WithOne(e => e.Employee)
                 .HasForeignKey(e => e.EmployeeId)
-                .OnDelete(DeleteBehavior.NoAction);  
+                .OnDelete(DeleteBehavior.NoAction)
+                .IsRequired(false);  
             
             builder.HasMany(x => x.Certificates) //sertifika
                 .WithOne(e => e.Employee)
                 .HasForeignKey(e => e.EmployeeId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.NoAction)
+                .IsRequired(false);
 
             builder.HasMany(x => x.Educations) //eğitim
                 .WithOne(e => e.Employee)
                 .HasForeignKey(e => e.EmployeeId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.NoAction)
+                .IsRequired(false);
   
             builder.HasMany(x => x.LeaveDays) //izin günleri
                 .WithOne(e => e.Employee)
                 .HasForeignKey(e => e.EmployeeId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.NoAction)
+                .IsRequired(false);
             
             builder.HasMany(x => x.Expenses) //harcamalar
                 .WithOne(e => e.Employee)
                 .HasForeignKey(e => e.EmployeeId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.NoAction)
+                .IsRequired(false);
   
 
             builder.ToTable("Employees");

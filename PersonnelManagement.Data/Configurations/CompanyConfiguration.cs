@@ -14,17 +14,20 @@ public class CompanyConfiguration : IEntityTypeConfiguration<Company>
         builder.HasMany(x => x.Expenses)  //harcama
             .WithOne(e => e.Company)
             .HasForeignKey(e => e.CompanyId)
-            .OnDelete(DeleteBehavior.NoAction);
+            .OnDelete(DeleteBehavior.NoAction)
+            .IsRequired(false);
 
         builder.HasMany(x => x.PersonnelLeaveDays)  //izin günleri
             .WithOne(ld => ld.Company)
             .HasForeignKey(ld => ld.CompanyId)
-            .OnDelete(DeleteBehavior.NoAction);
+            .OnDelete(DeleteBehavior.NoAction)
+            .IsRequired(false);
 
         builder.HasMany(x => x.Employees)  //çalışan
             .WithOne(e => e.Company)
             .HasForeignKey(e => e.CompanyId)
-            .OnDelete(DeleteBehavior.NoAction);
+            .OnDelete(DeleteBehavior.NoAction)
+            .IsRequired(false);
                 
         builder.ToTable("Companies");
 

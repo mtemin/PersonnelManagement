@@ -10,9 +10,9 @@ public class Employee
     public string Title { get; set; }
     public Company Company { get; set; }
     public int CompanyId { get; set; }
-    public ICollection<LeaveDay> LeaveDays { get; set; }
-    public ICollection<Expense> Expenses { get; set; }
-    public ICollection<Education> Educations { get; set; }
-    public ICollection<Certificate> Certificates { get; set; }
-    public ICollection<ProfessionalExperience> ProfessionalExperiences { get; set; }
+    public ICollection<LeaveDay>? LeaveDays { get; set; }
+    public ICollection<Expense>? Expenses { get; set; }
+    public ICollection<Education>? Educations { get; set; }
+    public ICollection<Certificate>? Certificates { get; set; }
+    public ICollection<ProfessionalExperience>? ProfessionalExperiences { get; set; }
 }
