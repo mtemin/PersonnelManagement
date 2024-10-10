@@ -6,5 +6,4 @@
         public string Surname { get; set; }
         public string Title { get; set; }
         public int CompanyId { get; set; }
-        public string CompanyName { get; set; }
     }
