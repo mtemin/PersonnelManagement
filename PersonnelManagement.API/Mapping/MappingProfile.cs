@@ -9,8 +9,13 @@ public class MappingProfile:Profile
     {
     CreateMap<Employee, EmployeeDTO>()
         .ReverseMap();
+    
+    CreateMap<CompanyDTO,Company >()
+        .ReverseMap();
 
 
     CreateMap<UpdateEmployeeDTO, Employee>();
+    CreateMap<UpdateCompanyDTO, Company>();
+    
     }
 }

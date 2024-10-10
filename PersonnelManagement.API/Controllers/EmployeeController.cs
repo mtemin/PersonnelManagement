@@ -85,9 +85,9 @@ namespace PersonnelManagement.API.Controllers;
      //
      //     await employeeService.DeleteEmployee(employee);
      //
-     //     var musciResource = mapper.Map<Employee, EmployeeDTO>(employee);
+     //     var employeeResource = mapper.Map<Employee, EmployeeDTO>(employee);
      //
-     //     return Ok(musciResource);
+     //     return Ok(employeeResource);
      // }
 
      [HttpPut]
