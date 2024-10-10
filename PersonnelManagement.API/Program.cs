@@ -21,8 +21,9 @@ builder.Services.AddDbContext<PersonnelManagementDbContext>(options =>
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IRepository<Employee>, EmployeeRepository>();    
 builder.Services.AddTransient<IEmployeeService, EmployeeService>();
+builder.Services.AddAutoMapper(typeof(IStartup));
 
-// builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 
 var app = builder.Build();
