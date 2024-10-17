@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 using PersonnelManagement.Data;
+using PersonnelManagement.Data.Identity;
 using PersonnelManagement.Domain;
 using PersonnelManagement.Services;
 using PersonnelManagement.Domain.Services;
@@ -22,7 +23,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<PersonnelManagementDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PERSONNEL_MANAGEMENT")));
 //Identity
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+builder.Services.AddIdentity<ApplicationUser, Role>()
     .AddEntityFrameworkStores<PersonnelManagementDbContext>()
     .AddDefaultTokenProviders();
 
@@ -30,8 +31,13 @@ builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = IdentityConstants.ApplicationScheme;
     options.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
+    // options.Password.RequireDigit = false;
+    // options.Password.RequireLowercase = false;
+    // options.Password.RequireNonAlphanumeric = false;
+    // options.Password.RequireUppercase = false;
+    // options.Password.RequiredLength = 6;
 });
-
+// builder.Services.AddTransient<RoleSeeder>();
 
 //Repository
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -55,6 +61,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseRouting();
+
+
 app.UseHttpsRedirection();
 app.MapControllers();
 
