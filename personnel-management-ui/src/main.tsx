@@ -7,8 +7,8 @@ import {
 } from "react-router-dom";
 import Home from './routes/Home.tsx';
 import ErrorPage from './routes/ErrorPage.tsx';
-import Register from './components/Register.tsx';
-import Login from './components/Login.tsx';
+import Register from './routes/Register.tsx';
+import Login from './routes/Login.tsx';
 
 const router = createBrowserRouter([
   {
