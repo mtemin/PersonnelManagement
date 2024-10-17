@@ -1,18 +1,16 @@
+import Login from "@/components/Login.tsx";
 
 export default function Home() {
   return (
-    <>
-      <div className='mx-auto'>
-
-      </div>
-      <h1 className='text-4xl inline-block mx-auto'>
+    <main className="container mx-auto">
+      <h1 className='text-4xl mt-[25%] mb-8 text-center'>
         Personnel Management
       </h1>
       <p className=''>
-        <a className='text-link hover:opacity-70' href="/login">Login</a> if you are an user, or&nbsp;
-        <a className='text-link hover:opacity-70' href="/register">register</a>
+        {/*<a className='text-link hover:opacity-70' href="/src/components/Login">Login</a> if you are an user, or&nbsp;*/}
+          <Login/>
 
       </p>
-    </>
+    </main>
   )
 }
