@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PersonnelManagement.API.DTO;
 using PersonnelManagement.Domain.Models.Concrete;
@@ -20,6 +21,7 @@ public class CompanyController:ControllerBase
      }
 
      [HttpGet]
+     // [Authorize(Roles = "Admin")]
      public async Task<ActionResult<IEnumerable<CompanyDTO>>> GetAllCompanies()
      {
          var companies = await companyService.GetAllEntitiesAsync();
@@ -29,6 +31,7 @@ public class CompanyController:ControllerBase
      }
 
      [HttpGet("id")]
+     // [Authorize(Roles = "Admin")]
      public async Task<ActionResult<CompanyDTO>> GetCompany(int id)
      {
          var company = await companyService.GetEntityByIdAsync(id);
@@ -37,6 +40,7 @@ public class CompanyController:ControllerBase
      }
 
      [HttpPost]
+     // [Authorize(Roles = "Admin")]
      public async Task<ActionResult<CompanyDTO>> CreateCompany([FromBody] UpdateCompanyDTO saveCompanyResource)
      {
          // var validator = new SaveCompanyResourceValidator();
@@ -56,6 +60,7 @@ public class CompanyController:ControllerBase
      }
 
      [HttpDelete]
+     // [Authorize(Roles = "Admin")]
      public async Task<IActionResult> DeleteCompany(int id)
      {
          if (id == 0)
@@ -90,6 +95,7 @@ public class CompanyController:ControllerBase
      // }
 
      [HttpPut]
+     // [Authorize(Roles = "Admin,Founder")]
      public async Task<ActionResult<CompanyDTO>> UpdateCompany(int id, [FromBody]UpdateCompanyDTO saveCompanyResource)
      {
          // var validator = new SaveCompanyResourceValidator();
