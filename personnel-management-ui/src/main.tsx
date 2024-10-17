@@ -8,7 +8,9 @@ import {
 import Home from './routes/Home.tsx';
 import ErrorPage from './routes/ErrorPage.tsx';
 import Register from './routes/Register.tsx';
-import Login from './routes/Login.tsx';
+import Login from './components/Login.tsx';
+import App from "@/App.tsx";
+import Navbar from "@/components/Navbar.tsx";
 
 const router = createBrowserRouter([
   {
@@ -28,8 +30,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <Navbar/>
     <RouterProvider router={router}>
-      {/* <App /> */}
+       <App />
     </RouterProvider>
   </StrictMode>,
 )
