@@ -3,7 +3,7 @@ import Login from "@/components/Login.tsx";
 export default function Home() {
   return (
     <main className="container mx-auto">
-      <h1 className='text-4xl mt-[25%] mb-8 text-center'>
+      <h1 className='text-4xl mt-[20%] mb-8 text-center'>
         Personnel Management
       </h1>
       <p className=''>

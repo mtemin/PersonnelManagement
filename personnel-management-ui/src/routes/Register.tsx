@@ -3,7 +3,7 @@ import { Input } from '@/components/ui/input'
 
 export default function Register() {
   return (
-    <section className='w-[25rem] mt-[25vh] translate-y-[-%50] m-auto'>
+    <main className='w-[25rem] mt-[25vh] translate-y-[-%50] m-auto'>
         <h4 className="text-2xl mb-6">Register</h4>
       <Input className='mb-4' type="text" placeholder="Username" />
       <Input className='mb-4' type="text" placeholder="Name" />
@@ -14,7 +14,7 @@ export default function Register() {
         Register
       </Button>
         <p>Go back to&nbsp;<a className="text-link underline" href="/">Homepage</a></p>
-    </section>
+    </main>
 
   )
 }

@@ -7,7 +7,7 @@ export default function ErrorPage() {
   console.error(error);
 
   return (
-    <div id="error-page" className="bg-red-800 rounded py-8 px-16 mx-auto w-[30rem] mt-[25%] translate-y-[-50%]">
+    <main id="error-page" className="bg-red-800 rounded py-8 px-16 mx-auto w-[30rem] mt-[20%] translate-y-[-50%]">
       <h1 className="font-bold text-3xl mb-6">Error!</h1>
       <p className="mb-6">No page found with this url.</p>
       <p className="mb-6">
@@ -20,6 +20,6 @@ export default function ErrorPage() {
         </a>
       </Button>
 
-    </div>
+    </main>
   );
 }
