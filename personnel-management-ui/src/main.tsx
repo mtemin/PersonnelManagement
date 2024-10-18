@@ -11,6 +11,7 @@ import Register from './routes/Register.tsx';
 import Login from './components/Login.tsx';
 import App from "@/App.tsx";
 import Navbar from "@/components/Navbar.tsx";
+import {Companies} from "@/routes/Companies.tsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+    {
+    path: "/companies",
+    element: <Companies />,
   },
 ]);
 
