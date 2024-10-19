@@ -12,6 +12,9 @@ import Login from './components/Login.tsx';
 import App from "@/App.tsx";
 import Navbar from "@/components/Navbar.tsx";
 import {Companies} from "@/routes/Companies.tsx";
+import Employees from "@/routes/Employees.tsx";
+import Expenses from "@/routes/Expenses.tsx";
+import LeaveDays from "@/routes/LeaveDays.tsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +34,19 @@ const router = createBrowserRouter([
     path: "/companies",
     element: <Companies />,
   },
+  {
+    path: "/employees",
+    element: <Employees />,
+  },
+    {
+    path: "/expenses",
+    element: <Expenses />,
+  },
+    {
+    path: "/leavedays",
+    element: <LeaveDays />,
+  },
+
 ]);
 
 createRoot(document.getElementById('root')!).render(
