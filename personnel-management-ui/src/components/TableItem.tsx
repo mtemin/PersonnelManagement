@@ -1,4 +1,3 @@
-import React from 'react';
 import {TableCell, TableRow} from "@/components/ui/table.tsx";
 import {Badge} from "@/components/ui/badge.tsx";
 import {
@@ -10,7 +9,7 @@ import {
 import {Button} from "@/components/ui/button.tsx";
 import {MoreHorizontal} from "lucide-react";
 
-function Company({company}:{company:Company}) {
+function TableItem({company}:{company:Company}) {
     return (
         <TableRow>
             <TableCell className="hidden sm:table-cell">
@@ -60,4 +59,4 @@ function Company({company}:{company:Company}) {
     );
 }
 
-export default Company;
+export default TableItem;
