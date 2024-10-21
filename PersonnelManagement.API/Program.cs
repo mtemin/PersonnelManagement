@@ -46,14 +46,17 @@ builder.Services.AddCors(options =>
 
 //Repository
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 builder.Services.AddTransient<IRepository<Employee>, EmployeeRepository>();    
 builder.Services.AddTransient<IEmployeeService, EmployeeService>();
 builder.Services.AddTransient<IRepository<Company>, CompanyRepository>();    
 builder.Services.AddTransient<ICompanyService, CompanyService>();
+
 builder.Services.AddTransient<IRepository<Expense>, ExpenseRepository>();    
 builder.Services.AddTransient<IExpenseService, ExpenseService>();
 builder.Services.AddTransient<IRepository<LeaveDay>, LeaveDayRepository>();    
 builder.Services.AddTransient<ILeaveDayService, LeaveDayService>();
+
 builder.Services.AddTransient<IRepository<Education>, EducationRepository>();    
 builder.Services.AddTransient<IEducationService, EducationService>();
 builder.Services.AddTransient<IRepository<Certificate>, CertificateRepository>();    
