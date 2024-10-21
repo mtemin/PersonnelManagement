@@ -19,6 +19,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 //EF Core
 builder.Services.AddDbContext<PersonnelManagementDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PERSONNEL_MANAGEMENT")));
@@ -34,9 +35,20 @@ builder.Services.AddAuthentication(options =>
 
 });
 
+//CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowClientOrigin",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:5173") // veya AllowAnyOrigin
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
+
 //Repository
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-// builder.Services.AddScoped<IRoleSeeder, RoleSeeder>();
 builder.Services.AddTransient<IRepository<Employee>, EmployeeRepository>();    
 builder.Services.AddTransient<IEmployeeService, EmployeeService>();
 builder.Services.AddTransient<IRepository<Company>, CompanyRepository>();    
@@ -46,6 +58,7 @@ builder.Services.AddAutoMapper(typeof(IStartup));
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
+app.UseCors("AllowClientOrigin");
 
 //
 // using (var scope = app.Services.CreateScope())
