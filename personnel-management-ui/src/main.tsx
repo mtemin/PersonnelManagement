@@ -18,6 +18,7 @@ import LeaveDays from "@/routes/LeaveDays.tsx";
 import ReactQueryClient from "@/components/provider/ReactQueryClient.tsx";
 import Profile from "@/routes/Profile.tsx";
 import CompanyProfile from "@/routes/CompanyProfile.tsx";
+import EmployeeProfile from "@/routes/EmployeeProfile.tsx";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/profile",
+    path: "/employee/:employeeId",
     element: <Profile />,
   },
   {
@@ -44,14 +45,6 @@ const router = createBrowserRouter([
   {
     path: "/employees",
     element: <Employees />,
-  },
-    {
-    path: "/expenses",
-    element: <Expenses />,
-  },
-    {
-    path: "/leavedays",
-    element: <LeaveDays />,
   },
   {
     path: "/company/:companyId",
