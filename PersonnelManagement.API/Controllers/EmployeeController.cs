@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PersonnelManagement.API.DTO;
 using PersonnelManagement.Domain.Models.Concrete;
 using PersonnelManagement.Domain.Services;
+using System.Xml;
 
 namespace PersonnelManagement.API.Controllers;
 
@@ -40,12 +41,6 @@ namespace PersonnelManagement.API.Controllers;
      [HttpPost]
      public async Task<ActionResult<EmployeeDTO>> CreateEmployee([FromBody] UpdateEmployeeDTO saveEmployeeResource)
      {
-         // var validator = new SaveEmployeeResourceValidator();
-         // var validationResult = await validator.ValidateAsync(saveEmployeeResource);
-         //
-         // if (!validationResult.IsValid)
-         //     return BadRequest(validationResult.Errors);
-
          var employeeToCreate = mapper.Map<UpdateEmployeeDTO, Employee>(saveEmployeeResource);
 
          var newEmployee = await employeeService.CreateEntityAsync(employeeToCreate);
@@ -72,34 +67,10 @@ namespace PersonnelManagement.API.Controllers;
          return NoContent();
      }
 
-     // [HttpDelete]
-     // public async Task<ActionResult<EmployeeDTO>> DeleteEmployee(int id)
-     // {
-     //     if (id == 0)
-     //         return BadRequest();
-     //
-     //     var employee = await employeeService.GetEmployeeById(id);
-     //
-     //     if (employee == null)
-     //         return NotFound();
-     //
-     //     await employeeService.DeleteEmployee(employee);
-     //
-     //     var employeeResource = mapper.Map<Employee, EmployeeDTO>(employee);
-     //
-     //     return Ok(employeeResource);
-     // }
-
      [HttpPut]
      public async Task<ActionResult<EmployeeDTO>> UpdateEmployee(int id, [FromBody]UpdateEmployeeDTO saveEmployeeResource)
      {
-         // var validator = new SaveEmployeeResourceValidator();
-         // var validationResult = await validator.ValidateAsync(saveEmployeeResource);
-         //
-         // var requestIsInvalid = id == 0 || !validationResult.IsValid;
-         //
-         // if (requestIsInvalid)
-         //     return BadRequest(validationResult.Errors);
+
 
          var employeeToBeUpdated = await employeeService.GetEntityByIdAsync(id);
 
@@ -113,5 +84,20 @@ namespace PersonnelManagement.API.Controllers;
          var updatedEmployee = await employeeService.GetEntityByIdAsync(id);
          var updatedEmployeeResource = mapper.Map<Employee, EmployeeDTO>(updatedEmployee);
          return Ok(updatedEmployeeResource);
+     }
+     
+     [HttpGet("{companyId}")]
+     public async Task<ActionResult<IEnumerable<EmployeeDTO>>> GetEmployeesByCompanyId(int companyId)
+     {
+         var employees = await employeeService.GetEmployeesByCompanyIdAsync(companyId);
+    
+         if (employees == null || !employees.Any())
+         {
+             return NotFound("No employees found for the specified company.");
+         }
+
+         var employeeResources = mapper.Map<IEnumerable<Employee>, IEnumerable<EmployeeDTO>>(employees);
+    
+         return Ok(employeeResources);
      }
  }
