@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PersonnelManagement.API.DTO;
 using PersonnelManagement.Domain.Models.Concrete;
@@ -8,8 +9,8 @@ namespace PersonnelManagement.API.Controllers;
 // {
 //     "username": "admin",
 //     "email": "mteminn@gmail.com",
-//     "password": "admin",
-//     "confirmPassword": "admin"
+//     "password": "Admin*1",
+//     "confirmPassword": "Admin*1"
 // }
 
 [ApiController]
@@ -28,13 +29,12 @@ public class UsersController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterDTO dto)
     {
-        // Create a new user and assign to a role
-        var user = new ApplicationUser  { UserName = dto.Username, Email = dto.Email };
+        var user = new ApplicationUser  { UserName = dto.Username, Email = dto.Email};
         // user.Id = Guid.NewGuid().ToString();
         var result = await _userManager.CreateAsync(user, dto.Password);
         if (result.Succeeded)
         {
-            await _userManager.AddToRoleAsync(user, "Employee"); // Assign to a role
+            await _userManager.AddToRoleAsync(user, "Employee");
             return Ok("User  created successfully");
         }
         return BadRequest("Failed to create user");
@@ -50,7 +50,21 @@ public class UsersController : ControllerBase
         }
         else
         {
-        return Unauthorized("Invalid username or password");
+            return Unauthorized("Invalid username or password");
         }
+    }
+    [HttpGet("users")]
+    // [Authorize(Roles="Admin")]
+    public async Task<IActionResult> GetAllUsers()
+    {
+        var users = _userManager.Users.ToList(); // Get all users
+        var userDtos = users.Select(user => new 
+        {
+            user.Id,
+            user.UserName,
+            user.Email
+        }).ToList(); // Project to a simpler DTO
+
+        return Ok(userDtos); // Return the list of users
     }
 }
