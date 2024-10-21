@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using PersonnelManagement.Data.Configurations;
 using PersonnelManagement.Domain.Models.Abstract;
 using PersonnelManagement.Domain.Models.Concrete;
