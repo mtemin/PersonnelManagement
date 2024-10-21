@@ -7,14 +7,20 @@ namespace PersonnelManagement.Services;
 
 public class CompanyService : BaseService<Company>,ICompanyService
 {
-    public CompanyService(IUnitOfWork unitOfWork, IRepository<Company> repository)
-        : base(unitOfWork, repository)
+    private readonly IUnitOfWork unitOfWork;
+    
+
+    public CompanyService(IUnitOfWork _unitOfWork, IRepository<Company> repository)
+        : base(_unitOfWork, repository)
     {
+        unitOfWork = _unitOfWork;
     }
 
-    public async Task<Company> UpdateEntityAsync(Company entityToBeUpdated, Company entity)
+    public async Task<Company> UpdateEntityAsync(Company companyToBeUpdated, Company company)
     {
-        throw new NotImplementedException();
+        companyToBeUpdated.Name = company.Name;
+        await unitOfWork.CommitAsync();
+        return await unitOfWork.Companies.GetByIdAsync(company.CompanyId);
     }
 
 }

@@ -16,17 +16,5 @@ public class CompanyRepository:Repository<Company>,ICompanyRepository
         get { return context as PersonnelManagementDbContext; }
     }
 
-    public async Task<IEnumerable<Company>> GetAllWithEmployeeAsync()
-    {
-        return await PersonnelManagementDbContext.Companies
-            .Include(x=>x.Employees)
-            .ToListAsync();
-    }
 
-    public async Task<Company> GetWithEmployeeAsync(int id)
-    {
-        return await PersonnelManagementDbContext.Companies
-            .Include(x => x.Employees)
-            .SingleOrDefaultAsync(x => x.CompanyId == id);
-    }
 }
