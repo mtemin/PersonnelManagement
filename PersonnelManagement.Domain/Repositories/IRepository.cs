@@ -12,5 +12,6 @@ public  interface IRepository<T> where T : class
     void RemoveRange(IEnumerable<T> entities);
     Task AddRangeAsync(IEnumerable<T> entities);
     IEnumerable<T> Find(Expression<Func<T, bool>> filter);
+    
     Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> filter);
 }

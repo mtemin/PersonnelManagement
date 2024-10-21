@@ -31,9 +31,12 @@ public class EmployeeService : BaseService<Employee>, IEmployeeService
         employeeToBeUpdated.LeaveDays = employee.LeaveDays;
         employeeToBeUpdated.ProfessionalExperiences = employee.ProfessionalExperiences;
         
-        
         await unitOfWork.CommitAsync();
         return await unitOfWork.Employees.GetByIdAsync(employee.EmployeeId);
     }
     
+    public async Task<IEnumerable<Employee>> GetEmployeesByCompanyIdAsync(int companyId)
+    {
+        return unitOfWork.Employees.Find(e => e.CompanyId == companyId);
+    }
 }

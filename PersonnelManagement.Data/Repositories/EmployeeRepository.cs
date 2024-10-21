@@ -38,4 +38,6 @@ public class EmployeeRepository : Repository<Employee>,IEmployeeRepository
             .Include(x => x.Company)
             .SingleOrDefaultAsync(x => x.EmployeeId == id);
     }
+    
+    
 }
