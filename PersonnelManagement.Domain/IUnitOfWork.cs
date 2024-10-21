@@ -11,9 +11,9 @@ public interface IUnitOfWork : IDisposable
     Task<int> CommitAsync();
     ICompanyRepository Companies { get; }
     IEmployeeRepository Employees { get; }
-    IRepository<Expense> Expenses { get; } //employee, company
-    IRepository<LeaveDay> LeaveDays { get; } //employee, company
-    IRepository<Education> Educations { get; } //employee
-    IRepository<Certificate> Certificates { get; } //employee
-    IRepository<ProfessionalExperience> ProfessionalExperiences { get; } //employee
+    IExpenseRepository Expenses { get; }
+    ILeaveDayRepository LeaveDays { get; }
+    IEducationRepository Educations { get; }
+    ICertificateRepository Certificates { get; }
+    IProfessionalExperienceRepository ProfessionalExperiences { get; }
 }
