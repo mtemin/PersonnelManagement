@@ -10,7 +10,7 @@ namespace PersonnelManagement.Controllers
 {
     [Route("api/")]
     [ApiController]
-    // [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class RoleController : ControllerBase
     {
         private readonly RoleManager<Role> _roleManager; 
@@ -21,6 +21,8 @@ namespace PersonnelManagement.Controllers
         }
 
         [HttpPost("create")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> CreateRole([FromBody] string roleName)
         {
             if (string.IsNullOrWhiteSpace(roleName))
@@ -40,6 +42,8 @@ namespace PersonnelManagement.Controllers
         }
         
         [HttpDelete("delete/{roleName}")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> DeleteRole(string roleName)
         {
             var role = await _roleManager.FindByNameAsync(roleName);
@@ -58,6 +62,8 @@ namespace PersonnelManagement.Controllers
         }
         
         [HttpGet("GetAllRoles")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> GetAllRoles()
         {
             var roles = _roleManager.Roles.ToList();
