@@ -18,11 +18,11 @@ public class UnitOfWork : IUnitOfWork
     }
     
     
-    public IRepository<Expense> Expenses { get; }
-    public IRepository<LeaveDay> LeaveDays { get; }
-    public IRepository<Education> Educations { get; }
-    public IRepository<Certificate> Certificates { get; }
-    public IRepository<ProfessionalExperience> ProfessionalExperiences { get; }
+    public IExpenseRepository Expenses { get; }
+    public ILeaveDayRepository LeaveDays { get; }
+    public IEducationRepository Educations { get; }
+    public ICertificateRepository Certificates { get; }
+    public IProfessionalExperienceRepository ProfessionalExperiences { get; }
     public ICompanyRepository Companies => companyRepository = companyRepository ?? new CompanyRepository(context); 
     public IEmployeeRepository Employees => employeeRepository = employeeRepository ?? new EmployeeRepository(context);
 
