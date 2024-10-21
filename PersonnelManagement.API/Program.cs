@@ -1,14 +1,12 @@
 using System.Reflection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-
 using PersonnelManagement.Data;
-using PersonnelManagement.Data.Identity;
 using PersonnelManagement.Domain;
 using PersonnelManagement.Services;
 using PersonnelManagement.Domain.Services;
 using PersonnelManagement.Data.Repositories;
+using PersonnelManagement.Domain.Models.Abstract;
 using PersonnelManagement.Domain.Repositories;
 using PersonnelManagement.Domain.Models.Concrete;
 
@@ -18,7 +16,6 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 
 //EF Core
 builder.Services.AddDbContext<PersonnelManagementDbContext>(options =>
@@ -53,6 +50,18 @@ builder.Services.AddTransient<IRepository<Employee>, EmployeeRepository>();
 builder.Services.AddTransient<IEmployeeService, EmployeeService>();
 builder.Services.AddTransient<IRepository<Company>, CompanyRepository>();    
 builder.Services.AddTransient<ICompanyService, CompanyService>();
+builder.Services.AddTransient<IRepository<Expense>, ExpenseRepository>();    
+builder.Services.AddTransient<IExpenseService, ExpenseService>();
+builder.Services.AddTransient<IRepository<LeaveDay>, LeaveDayRepository>();    
+builder.Services.AddTransient<ILeaveDayService, LeaveDayService>();
+builder.Services.AddTransient<IRepository<Education>, EducationRepository>();    
+builder.Services.AddTransient<IEducationService, EducationService>();
+builder.Services.AddTransient<IRepository<Certificate>, CertificateRepository>();    
+builder.Services.AddTransient<ICertificateService, CertificateService>();
+builder.Services.AddTransient<IRepository<ProfessionalExperience>, ProfessionalExperienceRepository>();    
+builder.Services.AddTransient<ProfessionalExperienceService, ProfessionalExperienceService>();
+
+
 //Automapper
 builder.Services.AddAutoMapper(typeof(IStartup));
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
@@ -60,12 +69,6 @@ builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 var app = builder.Build();
 app.UseCors("AllowClientOrigin");
 
-//
-// using (var scope = app.Services.CreateScope())
-// {
-//     var roleSeeder = scope.ServiceProvider.GetRequiredService<IRoleSeeder>();
-//     await roleSeeder.SeedRoles();
-// }
 
 if (app.Environment.IsDevelopment())
 {
