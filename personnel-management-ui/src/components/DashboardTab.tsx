@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {
-    Home,
+    Home, HousePlus,
     LineChart,
     Package,
     Package2,
@@ -38,58 +38,14 @@ function DashboardTab(props) {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                         <DropdownMenuItem><a href="/profile">Profile</a></DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>Settings</DropdownMenuItem>
-                        <DropdownMenuItem>Support</DropdownMenuItem>
+                        {/*<DropdownMenuItem><a href="/settings">Settings</a> </DropdownMenuItem>*/}
                         <DropdownMenuSeparator />
                         <DropdownMenuItem>Logout</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
-                <Link
-                    to="#"
-                    className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
-                >
-                    <Package2 className="h-4 w-4 transition-all group-hover:scale-110"/>
-                    <span className="sr-only">Acme Inc</span>
-                </Link>
 
-                <TooltipProvider><Tooltip>
-                    <TooltipTrigger asChild>
-                        <Link
-                            to="#"
-                            className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                        >
-                            <Home className="h-5 w-5"/>
-                            <span className="sr-only">Dashboard</span>
-                        </Link>
-                    </TooltipTrigger>
-                    <TooltipContent side="right">Dashboard</TooltipContent>
-                </Tooltip></TooltipProvider>
-                <TooltipProvider><Tooltip>
-                    <TooltipTrigger asChild>
-                        <Link
-                            to="#"
-                            className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                        >
-                            <ShoppingCart className="h-5 w-5"/>
-                            <span className="sr-only">Orders</span>
-                        </Link>
-                    </TooltipTrigger>
-                    <TooltipContent side="right">Orders</TooltipContent>
-                </Tooltip></TooltipProvider>
-                <TooltipProvider><Tooltip>
-                    <TooltipTrigger asChild>
-                        <Link
-                            to="#"
-                            className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                        >
-                            <Package className="h-5 w-5"/>
-                            <span className="sr-only">Companies</span>
-                        </Link>
-                    </TooltipTrigger>
-                    <TooltipContent side="right">Products</TooltipContent>
-                </Tooltip></TooltipProvider>
-                <DashboardItem name="Add Employee" icon={<UserPlus/>} link={"employees/create"}></DashboardItem>
+                <DashboardItem name="Add Company" icon={<HousePlus/>} link={"add-company"}></DashboardItem>
+                <DashboardItem name="Add Employee" icon={<UserPlus/>} link={"add-employee"}></DashboardItem>
 
             </nav>
             <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
