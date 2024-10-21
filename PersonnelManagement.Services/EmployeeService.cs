@@ -8,14 +8,12 @@ namespace PersonnelManagement.Services;
 public class EmployeeService : BaseService<Employee>, IEmployeeService
 {
     private readonly IUnitOfWork unitOfWork;
-    // private readonly IRepository<Employee> repository;
     
 
     public EmployeeService(IUnitOfWork _unitOfWork, IRepository<Employee> repository)
         : base(_unitOfWork, repository)
     {
         unitOfWork = _unitOfWork;
-        // repository = _repository;
     }
 
     public async Task<Employee> UpdateEntityAsync(Employee employeeToBeUpdated, Employee employee)
