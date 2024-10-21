@@ -31,16 +31,12 @@ builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = IdentityConstants.ApplicationScheme;
     options.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
-    // options.Password.RequireDigit = false;
-    // options.Password.RequireLowercase = false;
-    // options.Password.RequireNonAlphanumeric = false;
-    // options.Password.RequireUppercase = false;
-    // options.Password.RequiredLength = 6;
+
 });
-// builder.Services.AddTransient<RoleSeeder>();
 
 //Repository
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+// builder.Services.AddScoped<IRoleSeeder, RoleSeeder>();
 builder.Services.AddTransient<IRepository<Employee>, EmployeeRepository>();    
 builder.Services.AddTransient<IEmployeeService, EmployeeService>();
 builder.Services.AddTransient<IRepository<Company>, CompanyRepository>();    
@@ -49,10 +45,15 @@ builder.Services.AddTransient<ICompanyService, CompanyService>();
 builder.Services.AddAutoMapper(typeof(IStartup));
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+//
+// using (var scope = app.Services.CreateScope())
+// {
+//     var roleSeeder = scope.ServiceProvider.GetRequiredService<IRoleSeeder>();
+//     await roleSeeder.SeedRoles();
+// }
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
