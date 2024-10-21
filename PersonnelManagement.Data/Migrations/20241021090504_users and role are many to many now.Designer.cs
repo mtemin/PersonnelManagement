@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PersonnelManagement.Data;
 
@@ -11,9 +12,11 @@ using PersonnelManagement.Data;
 namespace PersonnelManagement.Data.Migrations
 {
     [DbContext(typeof(PersonnelManagementDbContext))]
-    partial class PersonnelManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241021090504_users and role are many to many now")]
+    partial class usersandrolearemanytomanynow
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

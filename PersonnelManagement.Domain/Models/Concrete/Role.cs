@@ -7,5 +7,5 @@ public class Role : IdentityRole<string>
 {
     public string Id { get; set; }
     public string Name { get; set; }
-    public ICollection<ApplicationUser> Users { get; set; }
+    public ICollection<UserRole> Users { get; set; } = new List<UserRole>();
 }
