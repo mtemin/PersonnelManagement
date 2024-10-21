@@ -1,5 +1,4 @@
 import {TableCell, TableRow} from "@/components/ui/table.tsx";
-import {Badge} from "@/components/ui/badge.tsx";
 import {
     DropdownMenu,
     DropdownMenuContent, DropdownMenuItem,
@@ -8,9 +7,8 @@ import {
 } from "@/components/ui/dropdown-menu.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {MoreHorizontal} from "lucide-react";
-import useCompanyQuery from "@/hooks/useCompanyQuery.ts";
 import axios from "axios";
-import useCompanyNameQuery from "@/hooks/useCompanyNameQuery.ts";
+import useCompanyQuery from "@/hooks/useCompanyQuery.ts";
 
 function TableItemEmployee({item}: { item: Employee }) {
     const {
@@ -38,7 +36,9 @@ function TableItemEmployee({item}: { item: Employee }) {
     return (
         <TableRow>
             <TableCell className="font-medium">
-                {item.name}
+                <a className="underline" href={`employee/${item.employeeId}`}>
+                    {item.name}
+                </a>
             </TableCell>
             <TableCell>
                 {item.surname}
