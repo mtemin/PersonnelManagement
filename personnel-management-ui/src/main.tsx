@@ -15,6 +15,9 @@ import {Companies} from "@/routes/Companies.tsx";
 import Employees from "@/routes/Employees.tsx";
 import Expenses from "@/routes/Expenses.tsx";
 import LeaveDays from "@/routes/LeaveDays.tsx";
+import ReactQueryClient from "@/components/provider/ReactQueryClient.tsx";
+import Profile from "@/routes/Profile.tsx";
+import CompanyProfile from "@/routes/CompanyProfile.tsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   },
   {
     path: "/register",
@@ -46,14 +53,20 @@ const router = createBrowserRouter([
     path: "/leavedays",
     element: <LeaveDays />,
   },
+  {
+    path: "/company/:companyId",
+    element: <CompanyProfile />,
+  },
 
 ]);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <ReactQueryClient>
     <Navbar/>
     <RouterProvider router={router}>
        <App />
     </RouterProvider>
-  </StrictMode>,
+    </ReactQueryClient>
+  </StrictMode>
 )
