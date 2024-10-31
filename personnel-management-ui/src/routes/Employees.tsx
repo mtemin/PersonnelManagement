@@ -1,17 +1,4 @@
-import {
-    File,
-    Home,
-    LineChart,
-    ListFilter,
-    MoreHorizontal,
-    Package,
-    Package2,
-    PanelLeft,
-    PlusCircle,
-    Search,
-    Settings,
-    ShoppingCart,
-    Users2,
+import {Search,
 } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
