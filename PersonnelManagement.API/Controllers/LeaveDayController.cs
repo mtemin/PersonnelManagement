@@ -14,10 +14,12 @@ namespace PersonnelManagement.API.Controllers;
 public class LeaveDayController:ControllerBase
 {
      private readonly ILeaveDayService leaveDayService;
+     private readonly IEmployeeService employeeService;
      private readonly IMapper mapper;
 
-     public LeaveDayController(ILeaveDayService service, IMapper _mapper)
+     public LeaveDayController(ILeaveDayService service, IEmployeeService _employeeService, IMapper _mapper)
      {
+         this.employeeService = _employeeService;
          this.leaveDayService = service;
          this.mapper = _mapper;
      }
@@ -49,7 +51,15 @@ public class LeaveDayController:ControllerBase
      // [Authorize(Roles = "Admin")]
      public async Task<ActionResult<LeaveDayDTO>> CreateLeaveDay([FromBody] UpdateLeaveDayDTO saveLeaveDayResource)
      {
+         var employee = await employeeService.GetEntityByIdAsync(saveLeaveDayResource.EmployeeId);
+    
+         if (employee == null)
+         {
+             return NotFound("Employee not found.");
+         }
+         var companyId = employee.CompanyId;
          var leaveDayToCreate = mapper.Map<UpdateLeaveDayDTO, LeaveDay>(saveLeaveDayResource);
+         leaveDayToCreate.CompanyId = companyId;
 
          var newLeaveDay = await leaveDayService.CreateEntityAsync(leaveDayToCreate);
 

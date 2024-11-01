@@ -6,6 +6,7 @@ using PersonnelManagement.Domain.Models.Concrete;
 using PersonnelManagement.Domain.Services;
 using System.Xml;
 using PersonnelManagement.Domain.Models.Abstract;
+using PersonnelManagement.Services;
 
 namespace PersonnelManagement.API.Controllers;
 
@@ -13,11 +14,13 @@ namespace PersonnelManagement.API.Controllers;
 [ApiController]
 public class ExpenseController:ControllerBase
 {
+    private readonly IEmployeeService employeeService;
      private readonly IExpenseService expenseService;
      private readonly IMapper mapper;
 
-     public ExpenseController(IExpenseService service, IMapper _mapper)
+     public ExpenseController(IExpenseService service, IEmployeeService _employeeService, IMapper _mapper)
      {
+         this.employeeService = _employeeService;
          this.expenseService = service;
          this.mapper = _mapper;
      }
@@ -49,7 +52,16 @@ public class ExpenseController:ControllerBase
      // [Authorize(Roles = "Admin")]
      public async Task<ActionResult<ExpenseDTO>> CreateExpense([FromBody] UpdateExpenseDTO saveExpenseResource)
      {
+         var employee = await employeeService.GetEntityByIdAsync(saveExpenseResource.EmployeeId);
+         if (employee == null)
+         {
+             return NotFound("Employee not found.");
+         }
+
+         var companyId = employee.CompanyId;
+         
          var expenseToCreate = mapper.Map<UpdateExpenseDTO, Expense>(saveExpenseResource);
+         expenseToCreate.CompanyId = companyId;
 
          var newExpense = await expenseService.CreateEntityAsync(expenseToCreate);
 
