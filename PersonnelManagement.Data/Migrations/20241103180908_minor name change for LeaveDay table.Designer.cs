@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PersonnelManagement.Data;
 
@@ -11,9 +12,11 @@ using PersonnelManagement.Data;
 namespace PersonnelManagement.Data.Migrations
 {
     [DbContext(typeof(PersonnelManagementDbContext))]
-    partial class PersonnelManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241103180908_minor name change for LeaveDay table")]
+    partial class minornamechangeforLeaveDaytable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -181,13 +184,13 @@ namespace PersonnelManagement.Data.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<bool>("IsApproved")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("StartDate")
+                    b.Property<DateTime>("LeaveEndDay")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("LeaveStartDay")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
