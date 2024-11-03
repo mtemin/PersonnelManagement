@@ -65,7 +65,7 @@ public class ExpenseController:ControllerBase
 
          var newExpense = await expenseService.CreateEntityAsync(expenseToCreate);
 
-         var expense = await expenseService.GetEntityByIdAsync(newExpense.RequestId);
+         var expense = await expenseService.GetEntityByIdAsync(newExpense.ExpenseId);
 
          var expenseResource = mapper.Map<Expense, ExpenseDTO>(expense);
          return Ok(expenseResource);

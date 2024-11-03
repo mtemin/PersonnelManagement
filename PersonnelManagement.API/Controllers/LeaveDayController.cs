@@ -63,7 +63,7 @@ public class LeaveDayController:ControllerBase
 
          var newLeaveDay = await leaveDayService.CreateEntityAsync(leaveDayToCreate);
 
-         var leaveDay = await leaveDayService.GetEntityByIdAsync(newLeaveDay.RequestId);
+         var leaveDay = await leaveDayService.GetEntityByIdAsync(newLeaveDay.LeaveDayId);
 
          var leaveDayResource = mapper.Map<LeaveDay, LeaveDayDTO>(leaveDay);
          return Ok(leaveDayResource);
