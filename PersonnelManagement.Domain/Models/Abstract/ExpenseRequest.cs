@@ -5,6 +5,8 @@ namespace PersonnelManagement.Domain.Models.Concrete;
 
 public class ExpenseRequest:Request
 {
+    [Key]
+    public int ExpenseId { get; set; }
     [Required]
     public decimal Amount { get; set; }
 }
