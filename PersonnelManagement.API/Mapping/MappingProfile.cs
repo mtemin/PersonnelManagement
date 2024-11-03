@@ -33,6 +33,7 @@ public class MappingProfile:Profile
     CreateMap<UpdateEmployeeDTO, Employee>();
     CreateMap<UpdateCompanyDTO, Company>();
     CreateMap<UpdateLeaveDayDTO, LeaveDay>();
+    CreateMap<UpdateExpenseDTO, Expense>();
     CreateMap<UpdateEducationDTO, Education>();
     CreateMap<UpdateCertificateDTO, Certificate>();
     CreateMap<UpdateProfessionalExperienceDTO, ProfessionalExperience>();
