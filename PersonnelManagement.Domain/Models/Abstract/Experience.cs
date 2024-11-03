@@ -8,8 +8,6 @@ public class Experience
 {
     //base class for education,certificates and professional experience
     [Required]
-    public int ExperienceId { get; set; }
-    [Required]
     public Employee Employee { get; set; }
     [Required]
     public int EmployeeId { get; set; }
