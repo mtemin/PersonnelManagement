@@ -9,7 +9,7 @@ public class LeaveRequest:Request
     public int LeaveDayId { get; set; }
     public string Type { get; set; }
     [Required]
-    public DateOnly LeaveStartDay { get; set; }
+    public DateTime StartDate { get; set; }
     [Required]
-    public DateOnly LeaveEndDay { get; set; }
+    public DateTime EndDate { get; set; }
 }

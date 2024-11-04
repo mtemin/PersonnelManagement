@@ -8,6 +8,6 @@ public class LeaveDayDTO
     public string Description { get; set; }
     public bool IsApproved { get; set; }
     public string Type { get; set; }
-    public DateOnly LeaveStartDay { get; set; }
-    public DateOnly LeaveEndDay { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
 }
