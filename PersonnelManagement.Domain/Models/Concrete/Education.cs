@@ -7,6 +7,7 @@ public class Education:Experience
 {
     [Required]
     public int EducationId { get; set; }
+    public string SchoolName { get; set; }
     [Required]
     public string Degree { get; set; }
     public string? FieldOfStudy { get; set; }
