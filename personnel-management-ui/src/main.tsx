@@ -1,10 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter,  RouterProvider} from "react-router-dom";
 import Home from './routes/Home.tsx';
 import ErrorPage from './routes/ErrorPage.tsx';
 import Register from './routes/Register.tsx';
@@ -13,10 +10,7 @@ import App from "@/App.tsx";
 import Navbar from "@/components/Navbar.tsx";
 import {Companies} from "@/routes/Companies.tsx";
 import Employees from "@/routes/Employees.tsx";
-import Expenses from "@/routes/Expenses.tsx";
-import LeaveDays from "@/routes/LeaveDays.tsx";
 import ReactQueryClient from "@/components/provider/ReactQueryClient.tsx";
-import Profile from "@/routes/Profile.tsx";
 import CompanyProfile from "@/routes/CompanyProfile.tsx";
 import EmployeeProfile from "@/routes/EmployeeProfile.tsx";
 
@@ -32,7 +26,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/employee/:employeeId",
-    element: <Profile />,
+    element: <EmployeeProfile />,
   },
   {
     path: "/register",
