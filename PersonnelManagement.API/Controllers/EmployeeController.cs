@@ -30,7 +30,7 @@ namespace PersonnelManagement.API.Controllers;
          return Ok(employeesResources);
      }
 
-     [HttpGet("id")]
+     [HttpGet( "{id}")]
      public async Task<ActionResult<EmployeeDTO>> GetEmployee(int id)
      {
          var employee = await employeeService.GetEntityByIdAsync(id);
@@ -86,10 +86,10 @@ namespace PersonnelManagement.API.Controllers;
          return Ok(updatedEmployeeResource);
      }
      
-     [HttpGet("{companyId}")]
-     public async Task<ActionResult<IEnumerable<EmployeeDTO>>> GetEmployeesByCompanyId(int companyId)
+     [HttpGet("{id}")]
+     public async Task<ActionResult<IEnumerable<EmployeeDTO>>> GetEmployeesByCompanyId(int id)
      {
-         var employees = await employeeService.GetEmployeesByCompanyIdAsync(companyId);
+         var employees = await employeeService.GetEmployeesByCompanyIdAsync(id);
     
          if (employees == null || !employees.Any())
          {

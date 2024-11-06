@@ -107,9 +107,9 @@ public class LeaveDayController:ControllerBase
      
      
      [HttpGet("{id}")]
-     public async Task<ActionResult<IEnumerable<LeaveDayDTO>>> GetLeaveDaysByEmployeeId(int companyId)
+     public async Task<ActionResult<IEnumerable<LeaveDayDTO>>> GetLeaveDaysByEmployeeId(int id)
      {
-         var leavedays = await leaveDayService.GetLeaveDaysByEmployeeIdAsync(companyId);
+         var leavedays = await leaveDayService.GetLeaveDaysByEmployeeIdAsync(id);
     
          if (leavedays == null || !leavedays.Any())
          {

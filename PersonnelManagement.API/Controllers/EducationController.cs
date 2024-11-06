@@ -96,9 +96,9 @@ public class EducationController:ControllerBase
      }
      
      [HttpGet("{id}")] 
-     public async Task<ActionResult<IEnumerable<EducationDTO>>> GetEducationsByEmployeeId(int employeeId)
+     public async Task<ActionResult<IEnumerable<EducationDTO>>> GetEducationsByEmployeeId(int id)
      {
-         var educations = await educationService.GetEducationsByEmployeeIdAsync(employeeId);
+         var educations = await educationService.GetEducationsByEmployeeIdAsync(id);
     
          if (educations == null || !educations.Any())
          {

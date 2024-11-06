@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Collections;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PersonnelManagement.API.DTO;
@@ -95,11 +96,12 @@ public class CertificateController:ControllerBase
      }
      
      [HttpGet("{id}")]
-     public async Task<ActionResult<IEnumerable<CertificateDTO>>> GetCertificatesByEmployeeId(int employeeId)
+     public async Task<ActionResult<IEnumerable<CertificateDTO>>> GetCertificatesByEmployeeId(int id)
      {
-         var certificates = await certificateService.GetCertificatesByEmployeeIdAsync(employeeId);
+         var certificates = await certificateService.GetCertificatesByEmployeeIdAsync(id);
+         var certificateList = certificates.ToList();
     
-         if (certificates == null || !certificates.Any())
+         if (certificateList.Count() == 0)
          {
              return NotFound("No certificates found for the specified employee.");
          }

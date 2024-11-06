@@ -108,9 +108,9 @@ public class ExpenseController:ControllerBase
      }
      
      [HttpGet("{id}")]    
-     public async Task<ActionResult<IEnumerable<ExpenseDTO>>> GetExpensesByEmployeeId(int companyId)
+     public async Task<ActionResult<IEnumerable<ExpenseDTO>>> GetExpensesByEmployeeId(int id)
      {
-         var expenses = await expenseService.GetExpensesByEmployeeIdAsync(companyId);
+         var expenses = await expenseService.GetExpensesByEmployeeIdAsync(id);
     
          if (expenses == null || !expenses.Any())
          {
