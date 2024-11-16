@@ -27,6 +27,11 @@ public class Repository<T> : IRepository<T> where T : class
     {
         return context.Set<T>().Where(filter);
     }
+    
+    public async Task<IEnumerable<T>> GetByFilterAsync(Expression<Func<T, bool>> filter)
+    {
+        return await context.Set<T>().Where(filter).ToListAsync();
+    }
 
     public async Task<IEnumerable<T>> GetAllAsync()
     {
