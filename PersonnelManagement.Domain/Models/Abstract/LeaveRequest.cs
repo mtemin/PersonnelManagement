@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using PersonnelManagement.Domain.Models.Abstract;
 
-namespace PersonnelManagement.Domain.Models.Concrete;
+namespace PersonnelManagement.Domain.Models.Abstract;
 
 public class LeaveRequest:Request
 {
