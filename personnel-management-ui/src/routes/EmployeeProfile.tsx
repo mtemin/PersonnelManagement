@@ -2,12 +2,13 @@ import EmployeeTable from "@/components/EmployeeTable.tsx";
 import {useParams} from "react-router-dom";
 import useItemsByEmployeeIdQuery from "@/hooks/useItemsByEmployeeId.ts";
 import useEmployeeQuery from "@/hooks/useEmployeeQuery.ts";
+import {getItemsByCompanyId} from "@/queries/getItemsByCompanyId.ts";
 
 function EmployeeProfile() {
     const  {employeeId}  = useParams();
     console.log(employeeId)
     const {data,isLoading,isError}:{data:Employee,isLoading:any,isError:any} = useEmployeeQuery(employeeId);
-    const {data: certificateData, isLoading: certificateIsLoading, isError: certificateIsError} = useItemsByEmployeeIdQuery("Certificate",employeeId);
+    // const {data: certificateData, isLoading: certificateIsLoading, isError: certificateIsError} = useItemsByEmployeeIdQuery("Certificate",employeeId);
     // const {data: leaveDaysData, isLoading: leaveDaysIsLoading, isError: leaveDaysIsError} = useItemsByEmployeeIdQuery("LeaveDay",employeeId);
     // const {data: educationData, isLoading: educationIsLoading, isError: educationIsError} = useItemsByEmployeeIdQuery("Education",employeeId);
     // if(certificateIsLoading) return "is loading"
@@ -17,15 +18,12 @@ function EmployeeProfile() {
         <main className="container font-medium mx-auto mt-10 ">
             <div id="profile" className="text-center my-10">
 
-                <p className="text-3xl">employee name surname</p>
-                <p className="text-2xl italic">employee title</p>
+                <p className="text-3xl">{data?.name}&nbsp;{data?.surname}</p>
+                {/*<p className="text-2xl italic">{data?.title}</p>*/}
                 <p className="flex justify-center items-center mx-auto mt-10">
-                    Working as <span>&nbsp;"ROLE"&nbsp;</span> in the company <span>&nbsp;"COMPANY"&nbsp;</span>
+                    Working as <span>&nbsp;{data?.title}&nbsp;</span> in the company <span>&nbsp;{}&nbsp;</span>
                 </p>
             </div>
-            <h3 className="text-4xl mb-8">
-                {data?.name}
-            </h3>
             <div className="flex h-[40rem]">
                 <section className="p-5 border border-border rounded overflow-scroll mr-2 ">
                     <p className="text-xl">Employees</p>
