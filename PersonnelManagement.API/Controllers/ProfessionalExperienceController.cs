@@ -96,9 +96,9 @@ public class ProfessionalExperienceController:ControllerBase
      }
      
      [HttpGet("{id}")]  
-     public async Task<ActionResult<IEnumerable<ProfessionalExperienceDTO>>> ProfessionalExperiencesByEmployeeId(int companyId)
+     public async Task<ActionResult<IEnumerable<ProfessionalExperienceDTO>>> ProfessionalExperiencesByEmployeeId(int id)
      {
-         var professionalExperiences = await professionalExperienceService.ProfessionalExperiencesByEmployeeIdAsync(companyId);
+         var professionalExperiences = await professionalExperienceService.ProfessionalExperiencesByEmployeeIdAsync(id);
     
          if (professionalExperiences == null || !professionalExperiences.Any())
          {

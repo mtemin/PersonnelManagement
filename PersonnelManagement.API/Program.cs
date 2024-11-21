@@ -62,7 +62,7 @@ builder.Services.AddTransient<IEducationService, EducationService>();
 builder.Services.AddTransient<IRepository<Certificate>, CertificateRepository>();    
 builder.Services.AddTransient<ICertificateService, CertificateService>();
 builder.Services.AddTransient<IRepository<ProfessionalExperience>, ProfessionalExperienceRepository>();    
-builder.Services.AddTransient<ProfessionalExperienceService, ProfessionalExperienceService>();
+builder.Services.AddTransient<IProfessionalExperienceService, ProfessionalExperienceService>();
 
 
 //Automapper
