@@ -9,22 +9,28 @@ namespace PersonnelManagement.Data;
 public class UnitOfWork : IUnitOfWork
 {
     private readonly PersonnelManagementDbContext context;
+    
     private CompanyRepository companyRepository;
     private EmployeeRepository employeeRepository;
+    
+    private ExpenseRepository expenseRepository;
+    private LeaveDayRepository leaveDayRepository;
+    private EducationRepository educationRepository;
+    private CertificateRepository certificateRepository;
+    private ProfessionalExperienceRepository professionalExperienceRepository;
 
     public UnitOfWork(PersonnelManagementDbContext _context)
     {
         this.context = _context;
     }
     
-    
-    public IExpenseRepository Expenses { get; }
-    public ILeaveDayRepository LeaveDays { get; }
-    public IEducationRepository Educations { get; }
-    public ICertificateRepository Certificates { get; }
-    public IProfessionalExperienceRepository ProfessionalExperiences { get; }
     public ICompanyRepository Companies => companyRepository = companyRepository ?? new CompanyRepository(context); 
     public IEmployeeRepository Employees => employeeRepository = employeeRepository ?? new EmployeeRepository(context);
+    public IExpenseRepository Expenses => expenseRepository = expenseRepository ?? new ExpenseRepository(context); 
+    public ILeaveDayRepository LeaveDays => leaveDayRepository = leaveDayRepository ?? new LeaveDayRepository(context); 
+    public IEducationRepository Educations => educationRepository = educationRepository ?? new EducationRepository(context);
+    public ICertificateRepository Certificates => certificateRepository = certificateRepository ?? new CertificateRepository(context);
+    public IProfessionalExperienceRepository ProfessionalExperiences => professionalExperienceRepository = professionalExperienceRepository ?? new ProfessionalExperienceRepository(context);
 
     public async Task<int> CommitAsync()
     {
