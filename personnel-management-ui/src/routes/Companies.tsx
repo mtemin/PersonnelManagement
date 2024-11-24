@@ -129,9 +129,8 @@ export function Companies() {
                                         </TableHeader>
                                         <TableBody>
                                             {companyData.map((company:Company) =>
-                                           <TableItemCompany key={company.companyId} item={company}/>
+                                                <TableItemCompany key={company.companyId} item={company}/>
                                             )}
-
                                         </TableBody>
                                     </Table>
                                 </CardContent>

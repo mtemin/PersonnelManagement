@@ -2,7 +2,7 @@
 
 namespace PersonnelManagement.Domain.Repositories;
 
-public  interface IRepository<T> where T : class
+public interface IRepository<T> where T : class
 {
     Task<IEnumerable<T>> GetAllAsync();
     ValueTask<T> GetByIdAsync(int id);
@@ -12,6 +12,5 @@ public  interface IRepository<T> where T : class
     void RemoveRange(IEnumerable<T> entities);
     Task AddRangeAsync(IEnumerable<T> entities);
     IEnumerable<T> Find(Expression<Func<T, bool>> filter);
-    
     Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> filter);
 }

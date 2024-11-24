@@ -110,5 +110,4 @@ public class CertificateController:ControllerBase
     
          return Ok(employeeResources);
      }
-     
 }
