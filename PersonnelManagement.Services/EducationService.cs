@@ -21,13 +21,23 @@ public class EducationService:BaseService<Education>, IEducationService
         return unitOfWork.Educations.Find(e => e.EmployeeId == employeeId);
     }
 
-    public Task<Employee> UpdateEntityAsync(Education educationToBeUpdated, Education education)
+    public async Task<Education> UpdateEntityAsync(Education educationToBeUpdated, Education education)
     {
-        throw new NotImplementedException();
+        educationToBeUpdated.Degree = education.Degree;
+        educationToBeUpdated.EmployeeId = education.EmployeeId;
+        educationToBeUpdated.SchoolName = education.SchoolName;
+        educationToBeUpdated.FieldOfStudy = education.FieldOfStudy;
+        educationToBeUpdated.Description = education.Description;
+        educationToBeUpdated.StartDate = education.StartDate;
+        educationToBeUpdated.EndDate = education.EndDate;
+                
+        await unitOfWork.CommitAsync();
+        return await unitOfWork.Educations.GetByIdAsync(education.EducationId);
     }
 
-    public Task<IEnumerable<Employee>> GetEducationByEmployeeIdAsync(int employeeId)
+    public async Task<IEnumerable<Education>> GetEducationByEmployeeIdAsync(int employeeId)
     {
-        throw new NotImplementedException();
+        return unitOfWork.Educations.Find(edc => edc.EmployeeId == employeeId);
     }
+    
 }
