@@ -121,4 +121,19 @@ public class LeaveDayController:ControllerBase
          return Ok(employeeResources);
      }
      
+     [HttpGet("{id}")]    
+     public async Task<ActionResult<IEnumerable<ExpenseDTO>>> GetLeaveDaysByCompanyId(int id)
+     {
+         var leaveDays = await leaveDayService.GetLeaveDaysByCompanyIdAsync(id);
+    
+         if (leaveDays == null || !leaveDays.Any())
+         {
+             return NotFound("No leaveDays found for the specified company.");
+         }
+
+         var employeeResources = mapper.Map<IEnumerable<LeaveDay>, IEnumerable<LeaveDayDTO>>(leaveDays);
+    
+         return Ok(employeeResources);
+     }
+     
 }

@@ -122,4 +122,19 @@ public class ExpenseController:ControllerBase
          return Ok(employeeResources);
      }
      
+     [HttpGet("{id}")]    
+     public async Task<ActionResult<IEnumerable<ExpenseDTO>>> GetExpensesByCompanyId(int id)
+     {
+         var expenses = await expenseService.GetExpensesByCompanyIdAsync(id);
+    
+         if (expenses == null || !expenses.Any())
+         {
+             return NotFound("No expenses found for the specified company.");
+         }
+
+         var employeeResources = mapper.Map<IEnumerable<Expense>, IEnumerable<ExpenseDTO>>(expenses);
+    
+         return Ok(employeeResources);
+     }
+     
 }
