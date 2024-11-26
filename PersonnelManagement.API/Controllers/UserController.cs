@@ -30,7 +30,6 @@ public class UsersController : ControllerBase
     public async Task<IActionResult> Register([FromBody] RegisterDTO dto)
     {
         var user = new ApplicationUser  { UserName = dto.Username, Email = dto.Email};
-        // user.Id = Guid.NewGuid().ToString();
         var result = await _userManager.CreateAsync(user, dto.Password);
         if (result.Succeeded)
         {
@@ -57,14 +56,14 @@ public class UsersController : ControllerBase
     // [Authorize(Roles="Admin")]
     public async Task<IActionResult> GetAllUsers()
     {
-        var users = _userManager.Users.ToList(); // Get all users
+        var users = _userManager.Users.ToList();
         var userDtos = users.Select(user => new 
         {
             user.Id,
             user.UserName,
             user.Email
-        }).ToList(); // Project to a simpler DTO
+        }).ToList();
 
-        return Ok(userDtos); // Return the list of users
+        return Ok(userDtos);
     }
 }
