@@ -96,18 +96,18 @@ public class ProfessionalExperienceController:ControllerBase
      }
      
      [HttpGet("{id}")]  
-     public async Task<ActionResult<IEnumerable<ProfessionalExperienceDTO>>> ProfessionalExperiencesByEmployeeId(int id)
+     public async Task<ActionResult<IEnumerable<ProfessionalExperienceDTO>>> GetProfessionalExperiencesByEmployeeId(int id)
      {
-         var professionalExperiences = await professionalExperienceService.ProfessionalExperiencesByEmployeeIdAsync(id);
+         var professionalExperiences = await professionalExperienceService.GetProfessionalExperiencesByEmployeeIdAsync(id);
     
          if (professionalExperiences == null || !professionalExperiences.Any())
          {
              return NotFound("No professionalExperiences found for the specified company.");
          }
 
-         var employeeResources = mapper.Map<IEnumerable<ProfessionalExperience>, IEnumerable<ProfessionalExperienceDTO>>(professionalExperiences);
+         var professionalExperienceResources = mapper.Map<IEnumerable<ProfessionalExperience>, IEnumerable<ProfessionalExperienceDTO>>(professionalExperiences);
     
-         return Ok(employeeResources);
+         return Ok(professionalExperienceResources);
      }
      
 }
