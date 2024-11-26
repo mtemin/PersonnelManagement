@@ -10,3 +10,12 @@ type Employee = {
     title: string,
     companyId: number,
 }
+
+type Expense = {
+    amount:number,
+    isApproved:boolean,
+    title:string
+    description:string,
+    companyId:number,
+    employeeId:number,
+}
