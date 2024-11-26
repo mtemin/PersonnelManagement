@@ -3,7 +3,7 @@ import {getCompanies} from "../queries/getCompanies.ts";
 import {getItemsByCompanyId} from "@/queries/getItemsByCompanyId.ts";
 
 export function useItemsByCompanyIdQuery(item,companyId) {
-    const queryKey = ['employees',companyId];
+    const queryKey = [item,companyId];
 
     const queryFn = async () => {
         const result = await getItemsByCompanyId(item,companyId);
