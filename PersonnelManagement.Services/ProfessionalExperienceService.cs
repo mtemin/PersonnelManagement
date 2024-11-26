@@ -1,10 +1,11 @@
 ﻿using PersonnelManagement.Domain;
 using PersonnelManagement.Domain.Models.Concrete;
 using PersonnelManagement.Domain.Repositories;
+using PersonnelManagement.Domain.Services;
 
 namespace PersonnelManagement.Services;
 
-public class ProfessionalExperienceService:BaseService<ProfessionalExperience>
+public class ProfessionalExperienceService:BaseService<ProfessionalExperience>, IProfessionalExperienceService
 {
     private readonly IUnitOfWork unitOfWork;
 
@@ -14,8 +15,18 @@ public class ProfessionalExperienceService:BaseService<ProfessionalExperience>
         unitOfWork = _unitOfWork;
     }
 
-    public async Task<IEnumerable<ProfessionalExperience>> ProfessionalExperiencesByEmployeeIdAsync(int employeeId)
+    public async Task<ProfessionalExperience> UpdateEntityAsync(ProfessionalExperience professionalExperienceToBeUpdated,
+        ProfessionalExperience professionalExperience)
     {
-        return unitOfWork.ProfessionalExperiences.Find(e => e.EmployeeId == employeeId);
+        professionalExperienceToBeUpdated.Company = professionalExperience.Company;
+        professionalExperienceToBeUpdated.JobTitle = professionalExperience.JobTitle;
+                
+        await unitOfWork.CommitAsync();
+        return await unitOfWork.ProfessionalExperiences.GetByIdAsync(professionalExperience.ProfessionalExperienceId);
+    }
+
+    public async Task<IEnumerable<ProfessionalExperience>> GetProfessionalExperiencesByEmployeeIdAsync(int employeeId)
+    {
+        return unitOfWork.ProfessionalExperiences.Find(pe => pe.EmployeeId == employeeId);
     }
 }

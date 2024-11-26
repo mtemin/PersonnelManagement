@@ -15,9 +15,17 @@ public class ExpenseService:BaseService<Expense>, IExpenseService
         unitOfWork = _unitOfWork;
     }
 
-    public Task<Expense> UpdateEntityAsync(Expense expenseToBeUpdated, Expense expense)
+    public async Task<Expense> UpdateEntityAsync(Expense expenseToBeUpdated, Expense expense)
     {
-        throw new NotImplementedException();
+        expenseToBeUpdated.Amount = expense.Amount;
+        expenseToBeUpdated.EmployeeId = expense.EmployeeId;
+        expenseToBeUpdated.Title = expense.Title;
+        expenseToBeUpdated.CompanyId = expense.CompanyId;
+        expenseToBeUpdated.Description = expense.Description;
+        expenseToBeUpdated.IsApproved = expense.IsApproved;
+                
+        await unitOfWork.CommitAsync();
+        return await unitOfWork.Expenses.GetByIdAsync(expense.ExpenseId);
     }
 
     public async Task<IEnumerable<Expense>> GetExpensesByCompanyIdAsync(int companyId)
