@@ -1,5 +1,5 @@
 ﻿using PersonnelManagement.Domain;
-using PersonnelManagement.Domain.Models.Abstract;
+using PersonnelManagement.Domain.Models.Concrete;
 using PersonnelManagement.Domain.Repositories;
 using PersonnelManagement.Domain.Services;
 
@@ -15,9 +15,19 @@ public class LeaveDayService:BaseService<LeaveDay>, ILeaveDayService
         unitOfWork = _unitOfWork;
     }
 
-    public Task<LeaveDay> UpdateEntityAsync(LeaveDay leaveDayToBeUpdated, LeaveDay leaveDay)
+    public async Task<LeaveDay> UpdateEntityAsync(LeaveDay leaveDayToBeUpdated, LeaveDay leaveDay)
     {
-        throw new NotImplementedException();
+        leaveDayToBeUpdated.EmployeeId = leaveDay.EmployeeId;
+        leaveDayToBeUpdated.CompanyId = leaveDay.CompanyId;
+        leaveDayToBeUpdated.Description = leaveDay.Description;
+        leaveDayToBeUpdated.IsApproved = leaveDay.IsApproved;
+        leaveDayToBeUpdated.Title = leaveDay.Title;
+        leaveDayToBeUpdated.Type = leaveDay.Type;
+        leaveDayToBeUpdated.StartDate = leaveDay.StartDate;
+        leaveDayToBeUpdated.EndDate = leaveDay.EndDate;
+        
+        await unitOfWork.CommitAsync();
+        return await unitOfWork.LeaveDays.GetByIdAsync(leaveDay.LeaveDayId);
     }
 
     public async Task<IEnumerable<LeaveDay>> GetLeaveDaysByCompanyIdAsync(int companyId)
