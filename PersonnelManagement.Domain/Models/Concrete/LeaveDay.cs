@@ -1,8 +1,7 @@
 ﻿
-using System.ComponentModel.DataAnnotations;
-using PersonnelManagement.Domain.Models.Concrete;
+using PersonnelManagement.Domain.Models.Abstract;
 
-namespace PersonnelManagement.Domain.Models.Abstract;
+namespace PersonnelManagement.Domain.Models.Concrete;
 
 public class LeaveDay:LeaveRequest
 {
