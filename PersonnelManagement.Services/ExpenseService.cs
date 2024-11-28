@@ -1,5 +1,6 @@
 ﻿using PersonnelManagement.Domain;
 using PersonnelManagement.Domain.Models.Abstract;
+using PersonnelManagement.Domain.Models.Concrete;
 using PersonnelManagement.Domain.Repositories;
 using PersonnelManagement.Domain.Services;
 
