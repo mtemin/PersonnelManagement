@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PersonnelManagement.Domain.Models.Abstract;
 using PersonnelManagement.Domain.Models.Concrete;
 using PersonnelManagement.Domain.Repositories;
 
