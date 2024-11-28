@@ -1,27 +1,25 @@
 import {Table, TableBody, TableHead, TableHeader, TableRow} from "@/components/ui/table.tsx";
 import TableItemEmployee from "@/components/TableItemEmployee.tsx";
 
-function EmployeeTable({itemCollection,key}:{itemCollection:any[],key:number}) {
+function EmployeeTable(
+    {itemCollection, headers}:
+    {itemCollection:any[],key:number, headers:string[]}
+) {
     return (
         <Table>
             <TableHeader>
                 <TableRow>
-                    <TableHead>Name</TableHead>
-                    <TableHead>Surname</TableHead>
-                    <TableHead className="hidden md:table-cell">
-                        Company
-                    </TableHead>
-                    <TableHead className="hidden md:table-cell">
-                        Job Title
-                    </TableHead>
+                    {headers.map((item:any,index:number) =>
+                        <TableHead key={index}>{item}</TableHead>
+                    )}
                     <TableHead>
                         <span className="sr-only">Actions</span>
                     </TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {itemCollection.map((item:any,index:number) =>
-                    <TableItemEmployee key={key} item={item}/>
+                {itemCollection.map((item:Employee) =>
+                    <TableItemEmployee key={item.employeeId} item={item}/>
                 )}
 
             </TableBody>
