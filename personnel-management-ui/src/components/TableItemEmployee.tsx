@@ -9,6 +9,7 @@ import {Button} from "@/components/ui/button.tsx";
 import {MoreHorizontal} from "lucide-react";
 import axios from "axios";
 import useCompanyQuery from "@/hooks/useCompanyQuery.ts";
+import {Link} from "react-router-dom";
 
 function TableItemEmployee({item}: { item: Employee }) {
     const {
@@ -36,19 +37,17 @@ function TableItemEmployee({item}: { item: Employee }) {
     return (
         <TableRow>
             <TableCell className="font-medium">
-                <a className="underline" href={`employee/${item.employeeId}`}>
-                    {item.name}
-                </a>
+                <Link className="underline" to={`/employee/${item.employeeId}`}>
+                    {item.name}&nbsp;{item.surname}
+                </Link>
             </TableCell>
-            <TableCell>
-                {item.surname}
-            </TableCell>
+
             <TableCell className="hidden md:table-cell">
 
                 {companyData &&
-                <a className="underline" href={`company/${companyData.companyId}`}>
+                <Link className="underline" to={`/company/${companyData.companyId}`}>
                     {companyData.name}
-                </a>
+                </Link>
                 }
             </TableCell>
             <TableCell className="hidden md:table-cell">
