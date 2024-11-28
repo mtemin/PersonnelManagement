@@ -5,6 +5,8 @@ import EmployeeTable from "@/components/EmployeeTable.tsx";
 import useEmployeesByCompanyIdQuery, {useItemsByCompanyIdQuery} from "@/hooks/useItemsByCompanyId.ts";
 import Expenses from "@/routes/Expenses.tsx";
 import ExpenseTable from "@/components/ExpenseTable.tsx";
+import TableItemExpense from "@/components/TableItemExpense.tsx";
+import LeaveDayTable from "@/components/LeaveDayTable.tsx";
 
 function CompanyProfile() {
     const  {companyId}  = useParams();
@@ -28,18 +30,18 @@ function CompanyProfile() {
             {data?.name}
             </h3>
             <div className="flex h-[40rem]">
-                <section className="p-5 border border-border rounded overflow-scroll mr-2 ">
+                <section className="p-5 border border-border rounded overflow-scroll mr-2 w-[40%]">
                     <p className="text-xl">Employees</p>
-                    <EmployeeTable key={employeesData?.id} itemCollection={employeesData}/>
+                    <EmployeeTable key={employeesData?.id} itemCollection={employeesData} headers={["Full Name","Company","Job Title"]} />
                 </section>
-            <div className="flex flex-col ml-2 max-h-[100vh]">
+            <div className="flex flex-col ml-2 max-h-[100vh] w-[60%]">
                 <section className="bg-card border border-border p-5 rounded overflow-scroll mb-4">
                     <p className="text-xl">Expenses</p>
-                    <ExpenseTable key={employeesData?.id} itemCollection={expensesData}/>
+                    <ExpenseTable key={employeesData?.id} itemCollection={expensesData} headers={["Is Approved","Employee Id","Amount","Title","Description"]}/>
                 </section>
                 <section className="bg-card border border-border p-5 rounded overflow-scroll">
                     <p className="text-xl">Leave days</p>
-                    <EmployeeTable key={employeesData?.id} itemCollection={employeesData}/>
+                    <LeaveDayTable key={leaveDaysData?.id} itemCollection={leaveDaysData} headers={["Is Approved","Employee Id","Type","Title","Description"]}/>
                 </section>
             </div>
             </div>
