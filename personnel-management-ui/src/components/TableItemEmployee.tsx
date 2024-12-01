@@ -37,7 +37,7 @@ function TableItemEmployee({item}: { item: Employee }) {
     return (
         <TableRow>
             <TableCell className="font-medium">
-                <Link className="underline" to={`/employee/${item.employeeId}`}>
+                <Link className="duration-300 hover:text-blue-500" to={`/employee/${item.employeeId}`}>
                     {item.name}&nbsp;{item.surname}
                 </Link>
             </TableCell>
@@ -45,7 +45,7 @@ function TableItemEmployee({item}: { item: Employee }) {
             <TableCell className="hidden md:table-cell">
 
                 {companyData &&
-                <Link className="underline" to={`/company/${companyData.companyId}`}>
+                <Link className="duration-300 hover:text-blue-500" to={`/company/${companyData.companyId}`}>
                     {companyData.name}
                 </Link>
                 }

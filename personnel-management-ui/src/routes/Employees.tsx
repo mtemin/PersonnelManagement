@@ -104,16 +104,13 @@ export default function Employees() {
                                                 {/*<TableHead className="hidden w-[100px] sm:table-cell">*/}
                                                 {/*    <span className="sr-only">img</span>*/}
                                                 {/*</TableHead>*/}
-                                                <TableHead>Name</TableHead>
-                                                <TableHead>Surname</TableHead>
-                                                <TableHead className="hidden md:table-cell">
-                                                    Company
-                                                </TableHead>
+                                                <TableHead>Full Name</TableHead>
+                                                <TableHead>Company</TableHead>
                                                 <TableHead className="hidden md:table-cell">
                                                     Job Title
                                                 </TableHead>
-                                                <TableHead>
-                                                    <span className="sr-only">Actions</span>
+                                                <TableHead className="hidden md:table-cell">
+                                                    Actions
                                                 </TableHead>
                                             </TableRow>
                                         </TableHeader>

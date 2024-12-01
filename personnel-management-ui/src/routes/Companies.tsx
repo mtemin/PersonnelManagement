@@ -107,29 +107,24 @@ export function Companies() {
                                 <CardHeader>
                                     <CardTitle>Companies</CardTitle>
                                     <CardDescription>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aut deleniti dicta dolores, error et illo inventore ipsam laudantium magni nam natus, nesciunt omnis praesentium quidem quisquam suscipit velit vero!
+                                        Uygulama'da kayıtlı şirketlerin listesi
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent>
                                     <Table>
                                         <TableHeader>
                                             <TableRow>
-                                                {/*<TableHead className="w-[100px] sm:table-cell">*/}
-                                                {/*    <span className="sr-only">img</span>*/}
-                                                {/*</TableHead>*/}
-                                                <TableHead className="max-w-6 ">Detail page</TableHead>
-                                                <TableHead>Name</TableHead>
-                                                <TableHead className="hidden md:table-cell">
-                                                    Employees
-                                                </TableHead>
                                                 <TableHead>
-                                                    <span className="sr-only">Actions</span>
+                                                </TableHead>
+                                                <TableHead>Name</TableHead>
+                                                <TableHead className="text-center">
+                                                    Actions
                                                 </TableHead>
                                             </TableRow>
                                         </TableHeader>
                                         <TableBody>
                                             {companyData.map((company:Company) =>
-                                                <TableItemCompany key={company.companyId} item={company}/>
+                                                <TableItemCompany key={company.companyId} company={company}/>
                                             )}
                                         </TableBody>
                                     </Table>

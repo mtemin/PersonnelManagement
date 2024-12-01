@@ -8,36 +8,28 @@ import {
 } from "@/components/ui/dropdown-menu.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {MoreHorizontal, SquareArrowOutUpRight} from "lucide-react";
+import {Link} from "react-router-dom";
 
-function TableItemCompany({item}:{item:Company}) {
+function TableItemCompany({company}:{company:Company}) {
 
 
     return (
         <TableRow>
-
-
-            <TableCell className="flex justify-center mt-2">
-                <a className="cursor-pointer" href={`company/${item.companyId}`}>
-                    <SquareArrowOutUpRight className="max-h-8" />
-                </a>
+            <TableCell className="text-lg font-medium py-4 text-center ">
             </TableCell>
             <TableCell className="text-lg font-medium py-4">
-                {item.name}
+                <Link to={`/company/${company.companyId}`} className="duration-300 hover:text-blue-500">
+                {company.name}
+                </Link>
             </TableCell>
 
-            <TableCell className="hidden md:table-cell">
-                {/*{item.employees}*/}
-            </TableCell>
-
-            <TableCell>
-
+            <TableCell className="text-center">
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button
                             aria-haspopup="true"
                             size="icon"
-                            variant="ghost"
-                        >
+                            variant="ghost">
                             <MoreHorizontal className="h-4 w-4" />
                             <span className="sr-only">Toggle menu</span>
                         </Button>
