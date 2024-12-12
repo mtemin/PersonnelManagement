@@ -2,11 +2,11 @@ import {Table, TableBody, TableHead, TableHeader, TableRow} from "@/components/u
 import TableItemExpense from "@/components/TableItemExpense.tsx";
 
 function EmployeeTable(
-    {itemCollection, headers}:
-    {itemCollection:any[],key:number,headers:string[]}
+    {itemCollection, headers, className}:
+    {itemCollection?:any[],key:number,headers:string[], className?:string}
 ) {
     return (
-        <Table>
+        <Table className={className}>
             <TableHeader>
                 <TableRow>
                     {headers.map((item:any,index:number) =>
