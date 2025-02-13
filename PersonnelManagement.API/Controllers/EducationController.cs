@@ -102,7 +102,7 @@ public class EducationController:ControllerBase
     
          if (educations == null || !educations.Any())
          {
-             return NotFound("No educations found for the specified employee.");
+             return Ok(new List<EducationDTO>());
          }
 
          var employeeResources = mapper.Map<IEnumerable<Education>, IEnumerable<EducationDTO>>(educations);

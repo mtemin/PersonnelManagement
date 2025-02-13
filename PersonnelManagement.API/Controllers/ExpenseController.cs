@@ -114,7 +114,7 @@ public class ExpenseController:ControllerBase
     
          if (expenses == null || !expenses.Any())
          {
-             return NotFound("No expenses found for the specified employee.");
+             return Ok(new List<ExpenseDTO>());
          }
 
          var employeeResources = mapper.Map<IEnumerable<Expense>, IEnumerable<ExpenseDTO>>(expenses);
@@ -129,7 +129,7 @@ public class ExpenseController:ControllerBase
     
          if (expenses == null || !expenses.Any())
          {
-             return NotFound("No expenses found for the specified company.");
+             return Ok(new List<ExpenseDTO>());
          }
 
          var employeeResources = mapper.Map<IEnumerable<Expense>, IEnumerable<ExpenseDTO>>(expenses);

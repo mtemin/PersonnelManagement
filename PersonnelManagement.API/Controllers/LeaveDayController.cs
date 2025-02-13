@@ -113,7 +113,7 @@ public class LeaveDayController:ControllerBase
     
          if (leavedays == null || !leavedays.Any())
          {
-             return NotFound("No leavedays found for the specified employee.");
+             return Ok(new List<LeaveDayDTO>());
          }
 
          var employeeResources = mapper.Map<IEnumerable<LeaveDay>, IEnumerable<LeaveDayDTO>>(leavedays);
@@ -128,7 +128,7 @@ public class LeaveDayController:ControllerBase
     
          if (leaveDays == null || !leaveDays.Any())
          {
-             return NotFound("No leaveDays found for the specified company.");
+             return Ok(new List<LeaveDayDTO>());
          }
 
          var employeeResources = mapper.Map<IEnumerable<LeaveDay>, IEnumerable<LeaveDayDTO>>(leaveDays);

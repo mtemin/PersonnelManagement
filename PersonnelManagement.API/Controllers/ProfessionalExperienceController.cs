@@ -102,7 +102,7 @@ public class ProfessionalExperienceController:ControllerBase
     
          if (professionalExperiences == null || !professionalExperiences.Any())
          {
-             return NotFound("No professionalExperiences found for the specified company.");
+             return Ok(new List<ProfessionalExperienceDTO>());
          }
 
          var professionalExperienceResources = mapper.Map<IEnumerable<ProfessionalExperience>, IEnumerable<ProfessionalExperienceDTO>>(professionalExperiences);

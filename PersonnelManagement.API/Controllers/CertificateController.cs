@@ -103,7 +103,7 @@ public class CertificateController:ControllerBase
     
          if (certificateList.Count() == 0)
          {
-             return NotFound("No certificates found for the specified employee.");
+             return Ok(new List<CertificateDTO>());
          }
 
          var employeeResources = mapper.Map<IEnumerable<Certificate>, IEnumerable<CertificateDTO>>(certificates);

@@ -93,7 +93,8 @@ namespace PersonnelManagement.API.Controllers;
     
          if (employees == null || !employees.Any())
          {
-             return NotFound("No employees found for the specified company.");
+             return Ok(new List<EmployeeDTO>());
+
          }
 
          var employeeResources = mapper.Map<IEnumerable<Employee>, IEnumerable<EmployeeDTO>>(employees);
